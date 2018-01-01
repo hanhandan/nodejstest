@@ -58,7 +58,8 @@ app.post('/item/:id/review',function(req,res,next){
  * 监听
  */
 
- app.listen(3000,function(){
-     console.log(' - listening on http://*.3000');
+ app.listen(3020,function(){
+     console.log(' - listening on http://*.3020');
+     console.log("views:  "+__dirname);
  })
 
