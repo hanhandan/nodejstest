@@ -41,10 +41,14 @@ function walkDir(dirPath, callback) {
         }
     };
     fs.readdir(dirPath, function (err, entires) {
+        if(err) {
+            console.error(err);
+            return;
+        }
         k = entires.length;
         entires.forEach(function(filename, i) {
             var path = Path.join(dirPath, filename);
-            // console.log(path);
+            // console.log(filename);
             fs.stat(path, function(err, stats) {
                 if (stats && stats.isFile()) {
                     result[filename] = read_excel(path);
@@ -94,7 +98,7 @@ function read_excel(filename) {
             if (typeof (device_info[i][index]) == 'undefined')
                 continue;
                 
-            if (device_info[i][index].substr(0, 2) == 'OC') {
+            if (device_info[i][index].substr(0, 2) == 'OC' || device_info[i][index].substr(0, 2) == 'OE' ||device_info[i][index].substr(0, 2) == 'OD' ) {
                 sn_list.push(device_info[i][index]);
                 console.log(device_info[i][index]);
             }
